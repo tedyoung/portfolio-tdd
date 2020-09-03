@@ -30,4 +30,26 @@ public class PortfolioDisplayTest {
                                    "2020-08-29 AMD 100 90 9000");
   }
 
+  @Test
+  public void cashIsRepresentedAsHolding() throws Exception {
+    Portfolio portfolio = new Portfolio();
+
+    portfolio.deposit(5000);
+
+    assertThat(portfolio.holdings())
+        .containsExactlyInAnyOrder("2020-09-02 CASH 5000 1 5000");
+  }
+
+  @Test
+  public void withCashAndHoldingDisplaysBothAsHoldings() throws Exception {
+    Portfolio portfolio = new Portfolio();
+
+    portfolio.deposit(5000);
+    portfolio.buy(200, "AAPL", 125, LocalDate.of(2020, 8, 28));
+
+    assertThat(portfolio.holdings())
+        .containsExactlyInAnyOrder("2020-08-28 AAPL 200 125 25000",
+                                   "2020-09-02 CASH 5000 1 5000");
+  }
+
 }

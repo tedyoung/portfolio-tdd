@@ -14,10 +14,14 @@ public class Portfolio {
   }
 
   public void deposit(int amount) {
-    balance += amount;
+    addHolding(amount, "CASH", 1, LocalDate.now());
   }
 
   public void buy(int shares, String symbol, int price, LocalDate dateOfPurchase) {
+    addHolding(shares, symbol, price, dateOfPurchase);
+  }
+
+  private void addHolding(int shares, String symbol, int price, LocalDate dateOfPurchase) {
     Holding holding = new Holding(shares, symbol, price, dateOfPurchase);
     holdings.add(holding);
     balance += holding.value();
