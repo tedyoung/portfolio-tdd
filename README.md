@@ -46,9 +46,17 @@ Test-driving the development of a simple stock portfolio tracking system.
 
 ## Concrete Examples
 
-* Open a portfolio and deposit $10,000
+* Open a portfolio and deposit $10,000 -- G/W/T
+    Given a new portfolio
+    When I deposit 10,000
+    Then its value is 10,000
 
-* Purchase 200 shares of AAPL at $125 on 2020/08/28
+* Purchase 200 shares of AAPL at $125 on 2020/08/28 -- G/W/T
+    Given a new portfolio
+    When I purchase 200 shares of AAPL at $125 on 2020/08/28
+    Then its value is 200*125
+
+* View Portfolio shows 200 shares of aapl valued at $25,000
 
 * Sell 100 shares of AAPL at $131 on 2020/09/01
 
