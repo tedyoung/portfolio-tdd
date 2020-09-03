@@ -58,5 +58,10 @@ Test-driving the development of a simple stock portfolio tracking system.
 
 * View Portfolio shows 200 shares of aapl valued at $25,000
 
+* View portfolio:
+    Given a portfolio with cash balance and a stock holding
+    When we ask it to be displayed
+    Then it displays two items: one for the cash and one for the stock holding
+
 * Sell 100 shares of AAPL at $131 on 2020/09/01
 

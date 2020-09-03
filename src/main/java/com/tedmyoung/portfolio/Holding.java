@@ -14,7 +14,7 @@ public class Holding {
     this.symbol = symbol;
     this.shares = shares;
     this.price = price;
-    holdingValue = shares * price;
+    this.holdingValue = shares * price;
   }
 
   public String holdingString() {
