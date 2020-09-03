@@ -24,4 +24,8 @@ public class Holding {
   public int value() {
     return holdingValue;
   }
+
+  public int valueAtPriceOf(int presentPrice) {
+    return shares * presentPrice;
+  }
 }
