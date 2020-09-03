@@ -63,5 +63,11 @@ Test-driving the development of a simple stock portfolio tracking system.
     When we ask it to be displayed
     Then it displays two items: one for the cash and one for the stock holding
 
-* Sell 100 shares of AAPL at $131 on 2020/09/01
+* Sell 200 shares of AAPL at $131 on 2020/09/01
+    Given a portfolio with 200 shares of AAPL
+    When we sell 200 shares at $131
+    Then increases cash by 200*131
+    And removes holding from portfolio
+    
+* View portfolio shows present value of stock holdings based on current prices
 

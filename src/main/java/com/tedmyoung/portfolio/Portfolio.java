@@ -8,29 +8,35 @@ import java.util.stream.Collectors;
 public class Portfolio {
   private int balance = 0;
   private final List<Holding> holdings = new ArrayList<>();
+  private Holding cashHolding = new Holding(0, "CASH", 1, LocalDate.now());
 
   public int value() {
     return balance;
   }
 
   public void deposit(int amount) {
-    addHolding(amount, "CASH", 1, LocalDate.now());
+    cashHolding = new Holding(amount, "CASH", 1, LocalDate.now());
+    balance += cashHolding.value();
   }
 
   public void buy(int shares, String symbol, int price, LocalDate dateOfPurchase) {
-    addHolding(shares, symbol, price, dateOfPurchase);
-  }
-
-  private void addHolding(int shares, String symbol, int price, LocalDate dateOfPurchase) {
     Holding holding = new Holding(shares, symbol, price, dateOfPurchase);
     holdings.add(holding);
-    balance += holding.value();
+
+    int cashValue = cashHolding.value();
+    cashHolding = new Holding(cashValue - holding.value(), "CASH", 1, LocalDate.now());
   }
 
   public List<String> holdings() {
-    return holdings.stream()
-                   .map(Holding::holdingString)
-                   .collect(Collectors.toUnmodifiableList());
+    List<Holding> displayList = new ArrayList<>();
+    displayList.add(cashHolding);
+    displayList.addAll(holdings);
+    return displayList.stream()
+                      .map(Holding::holdingString)
+                      .collect(Collectors.toUnmodifiableList());
   }
 
+  public int cash() {
+    return cashHolding.value();
+  }
 }
